@@ -1,4 +1,5 @@
 if game.PlaceId == 333164326 then
+print("ah is shit")
 local path = "servers.txt"
 local isfile = isfile(path)
 local player = game.Players.LocalPlayer

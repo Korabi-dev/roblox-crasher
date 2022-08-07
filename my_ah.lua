@@ -1,3 +1,4 @@
+if game.PlaceId == "333164326" then
 local path = "servers.txt"
 local isfile = isfile(path)
 local player = game.Players.LocalPlayer
@@ -17,7 +18,7 @@ end
 print(readfile(path))
 
 function hop() 
-local httpres = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")
+local httpres = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public")
 httpres = game:GetService("HttpService"):JSONDecode(httpres)
 local servers = httpres.data
  if not servers then
@@ -25,7 +26,7 @@ return warn("Servers couldnt be fetched")
 end
 local file = readfile(path)
 for i, server in pairs(servers) do 
-    if server.id ~= game.JobId and server.playing <= server.maxPlayers - 1 and not string.match(file, game.JobId) then 
+    if server.id ~= game.JobId and server.ping > 5 and server.playing <= server.maxPlayers - 1 and not string.match(file, game.JobId) then 
         game:GetService("TeleportService"):TeleportToPlaceInstance(
                         game.PlaceId,
                         server.id,
@@ -94,4 +95,4 @@ task.wait(one)
 
 hop()
 
-
+end

@@ -1,4 +1,4 @@
-if game.PlaceId == "333164326" then
+if game.PlaceId == 333164326 then
 local path = "servers.txt"
 local isfile = isfile(path)
 local player = game.Players.LocalPlayer
